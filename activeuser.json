@@ -1,8 +1,8 @@
 [
     {
         "device_id": "4c97d48c956c6c16",
-        "username": "reza",
-        "password": "reza",
+        "username": "user1",
+        "password": "pass123",
         "expirydate": "31-12-2025",
         "Allowoffline": true
     },
