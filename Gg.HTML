@@ -1,0 +1,101 @@
+cat << 'EOF' > index.html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonton Iklan Dapat Saldo</title>
+    <!-- Script Resmi Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .box-iklan {
+            background-color: #1e1e1e;
+            border: 2px dashed #00aaff;
+            border-radius: 10px;
+            padding: 40px 20px;
+            margin: 30px auto;
+            max-width: 400px;
+        }
+        .btn {
+            background-color: #00aa55;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+        }
+        .btn:disabled {
+            background-color: #555555;
+        }
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffaa00;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🎬 Sesi Nonton Iklan 🎬</h2>
+    <p>Silakan tunggu sampai waktu hitung mundur selesai untuk klaim saldo!</p>
+
+    <div class="box-iklan">
+        <!-- TEMPAT PASANG SCRIPT IKLAN ASLI (Adsterra/Monetag/dll) -->
+        <div id="container-iklan">
+            <p style="color: #888;">[ Iklan Sedang Diputar ]</p>
+            <!-- Contoh kalau pakai Adsterra, script-nya ditaruh di bawah sini -->
+            <!-- KODE_IKLAN_ADSTERRA_KAMU_DISINI -->
+        </div>
+        
+        <div id="timer">15</div>
+    </div>
+
+    <button id="btnKlaim" class="btn" disabled onclick="klaimSaldo()">TUNGGU IKLAN...</button>
+
+    <script>
+        // Inisialisasi Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Buka layar penuh otomatis di Telegram
+
+        let waktu = 15; // Waktu nonton iklan dalam detik
+        const timerElement = document.getElementById('timer');
+        const btnKlaim = document.getElementById('btnKlaim');
+
+        // Hitung mundur otomatis
+        const hitungMundur = setInterval(() => {
+            waktu--;
+            timerElement.innerText = waktu;
+
+            if (waktu <= 0) {
+                clearInterval(hitungMundur);
+                timerElement.innerText = "✅ Selesai!";
+                btnKlaim.innerText = "💰 KLAIM SALDO SEKARANG";
+                btnKlaim.disabled = false;
+            }
+        }, 1000);
+
+        // Fungsi saat tombol klaim diklik
+        function klaimSaldo() {
+            // Beri tahu user
+            alert("Selamat! Saldo berhasil ditambahkan.");
+            
+            // Tutup pop-up internal Telegram otomatis
+            tg.close();
+        }
+    </script>
+</body>
+</html>
+EOF
