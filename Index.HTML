@@ -8,41 +8,56 @@
         body { background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; text-align: center; padding: 50px 20px; margin: 0; }
         .container { max-width: 400px; margin: auto; background: #1e1e1e; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         h1 { font-size: 20px; margin-bottom: 20px; color: #00f2fe; }
-        .timer { font-size: 48px; font-weight: bold; margin: 20px 0; color: #ff4757; }
-        .btn { background: linear-gradient(45deg, #00f2fe, #4facfe); border: none; color: white; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; width: 100%; }
+        .timer { font-size: 48px; font-weight: bold; margin: 20px 0; color: #ff4757; display: none; }
+        .btn { background: linear-gradient(45deg, #00f2fe, #4facfe); border: none; color: white; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; width: 100%; margin-top: 10px; }
         .btn:disabled { background: #555; color: #aaa; cursor: not-allowed; }
+        .btn-watch { background: linear-gradient(45deg, #ff4757, #ff6b81); }
+        #info-text { margin: 15px 0; color: #ccc; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🎬 Iklan Sedang Berjalan...</h1>
-    <p>Silakan tonton sampai waktu habis untuk mendapatkan saldo.</p>
+    <h1>🎬 Sesi Nonton Iklan</h1>
+    <p id="info-text">Silakan klik tombol di bawah untuk mulai membuka iklan dan mengaktifkan hitung mundur.</p>
+    
     <div class="timer" id="countdown">15</div>
-    <button class="btn" id="claimBtn" disabled>Klaim Saldo 💰</button>
+    
+    <button class="btn btn-watch" id="watchBtn">👉 BUKA IKLAN 🎬</button>
+    <button class="btn" id="claimBtn" disabled style="display: none;">Klaim Saldo 💰</button>
 </div>
 
 <script>
     let timeLeft = 15;
     const timerElement = document.getElementById('countdown');
     const claimBtn = document.getElementById('claimBtn');
+    const watchBtn = document.getElementById('watchBtn');
+    const infoText = document.getElementById('info-text');
 
-    window.onload = function() {
+    watchBtn.onclick = function() {
+        // Buka iklan secara resmi lewat klik user (Aman dari blokir)
         window.open("https://elementarywhole.com/QyYAFJ", "_blank");
-    };
+        
+        // Sembunyikan tombol nonton, munculkan timer
+        watchBtn.style.display = "none";
+        timerElement.style.display = "block";
+        claimBtn.style.display = "block";
+        infoText.innerText = "Sistem sedang memverifikasi, tunggu sampai hitung mundur selesai...";
 
-    const downloadTimer = setInterval(function(){
-        if(timeLeft <= 0){
-            clearInterval(downloadTimer);
-            timerElement.innerText = "✓";
-            timerElement.style.color = "#2ed573";
-            claimBtn.disabled = false;
-            claimBtn.innerText = "Klaim Rp 500 💰";
-        } else {
-            timerElement.innerText = timeLeft;
-        }
-        timeLeft -= 1;
-    }, 1000);
+        // Mulai Hitung Mundur
+        const downloadTimer = setInterval(function(){
+            if(timeLeft <= 0){
+                clearInterval(downloadTimer);
+                timerElement.innerText = "✓";
+                timerElement.style.color = "#2ed573";
+                claimBtn.disabled = false;
+                claimBtn.innerText = "Klaim Rp 500 💰";
+            } else {
+                timerElement.innerText = timeLeft;
+            }
+            timeLeft -= 1;
+        }, 1000);
+    };
 
     claimBtn.onclick = function() {
         alert("Selamat! Saldo berhasil ditambahkan.");
