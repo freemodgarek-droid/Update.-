@@ -1,39 +1,152 @@
+cat << 'EOF' > index.html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesi Nonton Iklan</title>
+    <title>Mod FF Official Store</title>
     <style>
-        body { background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; text-align: center; padding: 50px 20px; margin: 0; }
-        .container { max-width: 400px; margin: auto; background: #1e1e1e; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        h1 { font-size: 20px; margin-bottom: 20px; color: #00f2fe; }
-        .timer { font-size: 48px; font-weight: bold; margin: 20px 0; color: #ff4757; display: none; }
-        .btn { background: linear-gradient(45deg, #00f2fe, #4facfe); border: none; color: white; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; width: 100%; margin-top: 10px; }
-        .btn:disabled { background: #555; color: #aaa; cursor: not-allowed; }
-        .btn-watch { background: linear-gradient(45deg, #ff4757, #ff6b81); }
-        #info-text { margin: 15px 0; color: #ccc; }
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
+            --text-color: #ffffff;
+            --accent-drip: #00d2ff;
+            --accent-hg: #ffae00;
+            --btn-color: #25d366;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #8a99ad;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .mod-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #232d42;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .title-drip { color: var(--accent-drip); }
+        .title-hg { color: var(--accent-hg); }
+
+        .select-box {
+            width: 100%;
+            padding: 12px;
+            background-color: #1f293d;
+            color: white;
+            border: 1px solid #3b4b6b;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background-color: var(--btn-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🎬 Sesi Nonton Iklan</h1>
-    <p id="info-text">Silakan klik tombol di bawah untuk mulai membuka iklan dan mengaktifkan hitung mundur.</p>
-    
-    <div class="timer" id="countdown">15</div>
-    
-    <button class="btn btn-watch" id="watchBtn">👉 BUKA IKLAN 🎬</button>
-    <button class="btn" id="claimBtn" disabled style="display: none;">Klaim Saldo 💰</button>
+    <h1>👑 Official Mod FF Store 👑</h1>
+    <div class="subtitle">Beli Key Premium Instan via WhatsApp Owner</div>
+
+    <!-- SECTION DRIP CLIENT -->
+    <div class="mod-section">
+        <h2 class="title-drip">💧 Mod FF Drip Client</h2>
+        <p style="color: #8a99ad; font-size: 14px;">Pilih durasi paket Drip Client:</p>
+        <select id="paket-drip" class="select-box">
+            <option value="1 Day_Rp 25.000">📱 1 Day - Rp 25.000</option>
+            <option value="3 Day_Rp 35.000">🔥 3 Day - Rp 35.000</option>
+            <option value="7 Day_Rp 65.000">🚀 7 Day - Rp 65.000</option>
+            <option value="15 Day_Rp 85.000">💎 15 Day - Rp 85.000</option>
+            <option value="30 Day_Rp 130.000">👑 30 Day - Rp 130.000</option>
+        </select>
+        <button class="btn-buy" onclick="kirimWA('Drip Client', 'paket-drip')">💬 Beli via WhatsApp</button>
+    </div>
+
+    <!-- SECTION HG CHEATS -->
+    <div class="mod-section">
+        <h2 class="title-hg">⚡ Mod FF HG Cheats</h2>
+        <p style="color: #8a99ad; font-size: 14px;">Pilih durasi paket HG Cheats:</p>
+        <select id="paket-hg" class="select-box">
+            <option value="1 Day_Rp 28.000">📱 1 Day - Rp 28.000</option>
+            <option value="7 Day_Rp 50.000">🚀 7 Day - Rp 50.000</option>
+            <option value="10 Day_Rp 70.000">🔥 10 Day - Rp 70.000</option>
+            <option value="30 Day_Rp 120.000">💎 30 Day - Rp 120.000</option>
+        </select>
+        <button class="btn-buy" onclick="kirimWA('HG Cheats', 'paket-hg')">💬 Beli via WhatsApp</button>
+    </div>
 </div>
 
 <script>
-    let timeLeft = 15;
-    const timerElement = document.getElementById('countdown');
-    const claimBtn = document.getElementById('claimBtn');
-    const watchBtn = document.getElementById('watchBtn');
-    const infoText = document.getElementById('info-text');
+    function kirimWA(namaMod, elementId) {
+        var select = document.getElementById(elementId).value;
+        var data = select.split("_");
+        var durasi = data[0];
+        var harga = data[1];
+        
+        var nomorWA = "6282282882946";
+        var teks = "Halo Gan, saya mau beli Mod Menu ini:\n\n" +
+                   "🎮 Produk: Mod FF " + namaMod + "\n" +
+                   "⏳ Durasi: " + durasi + "\n" +
+                   "💰 Harga: " + harga + "\n\n" +
+                   "Mohon info metode pembayaran dan nomor DANA-nya ya!";
+        
+        var linkUrl = "https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(teks);
+        window.open(linkUrl, '_blank');
+    }
+</script>
 
+</body>
+</html>
+EOF
     watchBtn.onclick = function() {
         // Buka iklan secara resmi lewat klik user (Aman dari blokir)
         window.open("https://elementarywhole.com/QyYAFJ", "_blank");
